@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "333435520495",
+    "project_id": "easy-rent-and-sell-mgmt-tool",
+    "storage_bucket": "easy-rent-and-sell-mgmt-tool.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333435520495:android:ad836999467d061d67a21a",
+        "android_client_info": {
+          "package_name": "com.gerardo788.proyectofinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333435520495-pplvb85fc8eo03idqeck17p8o24j5l6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJljAtSagkrxMIeouGAT5JKvKCx0sCqbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333435520495-pplvb85fc8eo03idqeck17p8o24j5l6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
