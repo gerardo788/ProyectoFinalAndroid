@@ -53,6 +53,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumInterior" />
 
             <TextView
+                android:id="@+id/textViewSub3"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/black"
+                android:text="Caracteristicas de la propiedad"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextComentarios" />
+
+            <TextView
                 android:id="@+id/textViewBottom"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -309,22 +323,93 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumExterior" />
 
+            <EditText
+                android:id="@+id/editTextNumberNumRecamaras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="Numero Recamaras"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSub3" />
+
+            <EditText
+                android:id="@+id/editTextNumberNumBanosCompletos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Numero Baños Completos"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumRecamaras" />
+
+            <EditText
+                android:id="@+id/editTextNumberNumMediosBanos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Numero Medios Baños"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumBanosCompletos" />
+
+            <EditText
+                android:id="@+id/editTextNumberNumEstacionamientos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Numero Estacionamientos"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumMediosBanos" />
+
+            <EditText
+                android:id="@+id/editTextNumberMetrosCuadradosTerreno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Metros cuadrados Terreno"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberNumEstacionamientos" />
+
+            <EditText
+                android:id="@+id/editTextNumberMetrosCuadradosConstruccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Metros Cuadrados Construccion"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberMetrosCuadradosTerreno" />
+
             <Button
                 android:id="@+id/buttonSubir"
                 android:layout_width="180dp"
                 android:layout_height="76dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="68dp"
                 android:text="Subir a base de datos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextComentarios" />
+                app:layout_constraintTop_toBottomOf="@+id/imageSelect_iv" />
 
             <EditText
                 android:id="@+id/editTextNumberId"
                 android:layout_width="122dp"
                 android:layout_height="51dp"
-                android:layout_marginTop="76dp"
                 android:ems="10"
                 android:hint="ID"
                 android:inputType="number"
@@ -332,8 +417,18 @@
                 app:layout_constraintEnd_toStartOf="@+id/buttonSubir"
                 app:layout_constraintHorizontal_bias="0.41"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextComentarios"
-                app:layout_constraintVertical_bias="0.007" />
+                app:layout_constraintTop_toTopOf="@+id/buttonSubir"
+                app:layout_constraintVertical_bias="0.163" />
+
+            <ImageView
+                android:id="@+id/imageSelect_iv"
+                android:layout_width="237dp"
+                android:layout_height="209dp"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/icon_image_empty_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberMetrosCuadradosConstruccion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

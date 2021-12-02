@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerardo788.proyectofinal.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,9 +44,11 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // aqui se pueden agregar las cosas de botones y funcionalidades
-        // aqui
-        // aqui
+        viewModel.obtenerPropiedades()
+
+        val adapter = AdapterRV(viewModel._propiedades)
+        binding.rvPropiedades.adapter = adapter
+        binding.rvPropiedades.layoutManager = LinearLayoutManager(this.context)
 
         // Inflate the layout for this fragment
         return binding.root

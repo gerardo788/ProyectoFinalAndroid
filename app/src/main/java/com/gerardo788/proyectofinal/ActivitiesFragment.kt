@@ -1,14 +1,21 @@
 package com.gerardo788.proyectofinal
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import com.gerardo788.proyectofinal.databinding.FragmentActivitiesBinding
 import com.gerardo788.proyectofinal.databinding.FragmentHomeBinding
+import com.google.firebase.storage.StorageReference
+import java.io.ByteArrayOutputStream
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +28,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ActivitiesFragment : Fragment() {
+
+    private val SELECT_ACTIVITY = 50
+    private var imageUri: Uri? = null
 
     private var _binding: FragmentActivitiesBinding ?= null
     private val binding get() = _binding!!
@@ -51,13 +61,63 @@ class ActivitiesFragment : Fragment() {
             Toast.makeText(activity,"Se apreto boton", Toast.LENGTH_SHORT).show()
         }
 
+        binding.imageSelectIv.setOnClickListener {
+            ImageController.selectPhotoFromGallery(this, SELECT_ACTIVITY)
+        }
+
+        viewModel.obtenerPropiedades()
+
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when{
+            requestCode == SELECT_ACTIVITY && resultCode == FragmentActivity.RESULT_OK -> {
+                imageUri = data!!.data
+                binding.imageSelectIv.setImageURI(imageUri)
+            }
+        }
     }
 
     private fun subirABase() {
 
+        var urlFoto = "urlFotoNoModificada"
+        binding.imageSelectIv.isDrawingCacheEnabled = true
+        binding.imageSelectIv.buildDrawingCache()
+        val bitmap = (binding.imageSelectIv.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        var ref = viewModel.storageRef.reference.child("images/"+binding.editTextNumberId.text)
+        var uploadTask = ref.putBytes(data)
+        uploadTask.addOnFailureListener{
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc
+        }
+
+        val urlTask = uploadTask.continueWithTask{ task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            ref.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                urlFoto = downloadUri.toString()
+            } else {
+                // Handle failures
+            }
+        }
+
         viewModel.db.collection("Inmuebles").document(binding.editTextNumberId.text.toString()).set(
             hashMapOf("estado" to binding.editTextEstado.text.toString(),
+                "id" to binding.editTextNumberId.text.toString(),
                 "alcaldiaOMunicipio" to binding.editTextAlcaldiaOMunicipio.text.toString(),
                 "colonia" to binding.editTextColonia.text.toString(),
                 "codigoPostal" to binding.editTextNumberCodigoPostal.text.toString(),
@@ -75,7 +135,14 @@ class ActivitiesFragment : Fragment() {
                 "nombreAsesor" to binding.editTextNombreAsesor.text.toString(),
                 "comision" to binding.editTextComision.text.toString(),
                 "fechaProxContacto" to binding.editTextFechaProxContacto.text.toString(),
-                "comentarios" to binding.editTextComentarios.text.toString())
+                "comentarios" to binding.editTextComentarios.text.toString(),
+                "numeroRecamaras" to binding.editTextNumberNumRecamaras.text.toString(),
+                "banosCompletos" to binding.editTextNumberNumBanosCompletos.text.toString(),
+                "mediosBanos" to binding.editTextNumberNumMediosBanos.text.toString(),
+                "numeroEstacionamientos" to binding.editTextNumberNumEstacionamientos.text.toString(),
+                "metrosCuadradosTerreno" to binding.editTextNumberMetrosCuadradosTerreno.text.toString(),
+                "metrosCuadradosConstruccion" to binding.editTextNumberMetrosCuadradosConstruccion.text.toString(),
+                "urlFoto" to urlFoto)
         )
 
     }
@@ -98,5 +165,10 @@ class ActivitiesFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
