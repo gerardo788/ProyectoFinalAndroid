@@ -16,6 +16,7 @@ import com.gerardo788.proyectofinal.databinding.FragmentActivitiesBinding
 import com.gerardo788.proyectofinal.databinding.FragmentHomeBinding
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,6 +85,7 @@ class ActivitiesFragment : Fragment() {
     private fun subirABase() {
 
         var urlFoto = "urlFotoNoModificada"
+        val idRandom = rand(0,1000000).toString()
         binding.imageSelectIv.isDrawingCacheEnabled = true
         binding.imageSelectIv.buildDrawingCache()
         val bitmap = (binding.imageSelectIv.drawable as BitmapDrawable).bitmap
@@ -91,7 +93,7 @@ class ActivitiesFragment : Fragment() {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        var ref = viewModel.storageRef.reference.child("images/"+binding.editTextNumberId.text)
+        var ref = viewModel.storageRef.reference.child("images/"+idRandom)
         var uploadTask = ref.putBytes(data)
         uploadTask.addOnFailureListener{
             // Handle unsuccessful uploads
@@ -110,41 +112,47 @@ class ActivitiesFragment : Fragment() {
             if (task.isSuccessful) {
                 val downloadUri = task.result
                 urlFoto = downloadUri.toString()
+                viewModel.db.collection("Inmuebles").document(idRandom).set(
+                    hashMapOf("estado" to binding.editTextEstado.text.toString(),
+                        "id" to idRandom,
+                        "alcaldiaOMunicipio" to binding.editTextAlcaldiaOMunicipio.text.toString(),
+                        "colonia" to binding.editTextColonia.text.toString(),
+                        "codigoPostal" to binding.editTextNumberCodigoPostal.text.toString(),
+                        "conjuntoOEdificio" to binding.editTextConjuntoOEdificio.text.toString(),
+                        "calle" to binding.editTextCalle.text.toString(),
+                        "numExterior" to binding.editTextNumberNumExterior.text.toString(),
+                        "numInterior" to binding.editTextNumberNumInterior.text.toString(),
+                        "tipoOperacion" to binding.editTextTipoOperacion.text.toString(),
+                        "tipoPropiedad" to binding.editTextTipoPropiedad.text.toString(),
+                        "precioEn" to binding.editTextPrecioEn.text.toString(),
+                        "cantidad" to binding.editTextCantidad.text.toString(),
+                        "amueblado" to binding.editTextAmueblado.text.toString(),
+                        "electrodomesticos" to binding.editTextElectrodomesticos.text.toString(),
+                        "factura" to binding.editTextFactura.text.toString(),
+                        "nombreAsesor" to binding.editTextNombreAsesor.text.toString(),
+                        "comision" to binding.editTextComision.text.toString(),
+                        "fechaProxContacto" to binding.editTextFechaProxContacto.text.toString(),
+                        "comentarios" to binding.editTextComentarios.text.toString(),
+                        "numeroRecamaras" to binding.editTextNumberNumRecamaras.text.toString(),
+                        "banosCompletos" to binding.editTextNumberNumBanosCompletos.text.toString(),
+                        "mediosBanos" to binding.editTextNumberNumMediosBanos.text.toString(),
+                        "numeroEstacionamientos" to binding.editTextNumberNumEstacionamientos.text.toString(),
+                        "metrosCuadradosTerreno" to binding.editTextNumberMetrosCuadradosTerreno.text.toString(),
+                        "metrosCuadradosConstruccion" to binding.editTextNumberMetrosCuadradosConstruccion.text.toString(),
+                        "urlFoto" to downloadUri.toString(),
+                        "disponible" to binding.checkBox.isChecked.toString())
+                )
             } else {
                 // Handle failures
             }
         }
 
-        viewModel.db.collection("Inmuebles").document(binding.editTextNumberId.text.toString()).set(
-            hashMapOf("estado" to binding.editTextEstado.text.toString(),
-                "id" to binding.editTextNumberId.text.toString(),
-                "alcaldiaOMunicipio" to binding.editTextAlcaldiaOMunicipio.text.toString(),
-                "colonia" to binding.editTextColonia.text.toString(),
-                "codigoPostal" to binding.editTextNumberCodigoPostal.text.toString(),
-                "conjuntoOEdificio" to binding.editTextConjuntoOEdificio.text.toString(),
-                "calle" to binding.editTextCalle.text.toString(),
-                "numExterior" to binding.editTextNumberNumExterior.text.toString(),
-                "numInterior" to binding.editTextNumberNumInterior.text.toString(),
-                "tipoOperacion" to binding.editTextTipoOperacion.text.toString(),
-                "tipoPropiedad" to binding.editTextTipoPropiedad.text.toString(),
-                "precioEn" to binding.editTextPrecioEn.text.toString(),
-                "cantidad" to binding.editTextCantidad.text.toString(),
-                "amueblado" to binding.editTextAmueblado.text.toString(),
-                "electrodomesticos" to binding.editTextElectrodomesticos.text.toString(),
-                "factura" to binding.editTextFactura.text.toString(),
-                "nombreAsesor" to binding.editTextNombreAsesor.text.toString(),
-                "comision" to binding.editTextComision.text.toString(),
-                "fechaProxContacto" to binding.editTextFechaProxContacto.text.toString(),
-                "comentarios" to binding.editTextComentarios.text.toString(),
-                "numeroRecamaras" to binding.editTextNumberNumRecamaras.text.toString(),
-                "banosCompletos" to binding.editTextNumberNumBanosCompletos.text.toString(),
-                "mediosBanos" to binding.editTextNumberNumMediosBanos.text.toString(),
-                "numeroEstacionamientos" to binding.editTextNumberNumEstacionamientos.text.toString(),
-                "metrosCuadradosTerreno" to binding.editTextNumberMetrosCuadradosTerreno.text.toString(),
-                "metrosCuadradosConstruccion" to binding.editTextNumberMetrosCuadradosConstruccion.text.toString(),
-                "urlFoto" to urlFoto)
-        )
+    }
 
+    fun rand(start: Int, end: Int): Int {
+        require(start <= end) { "Illegal Argument" }
+        val rand = Random(System.nanoTime())
+        return (start..end).random(rand)
     }
 
     companion object {

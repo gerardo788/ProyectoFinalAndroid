@@ -102,7 +102,8 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSub1" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewSub1"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextTipoOperacion"
@@ -147,7 +148,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Cantidad"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextPrecioEn" />
@@ -247,7 +248,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextEstado" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextEstado"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextColonia"
@@ -260,7 +262,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAlcaldiaOMunicipio" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextAlcaldiaOMunicipio"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextConjuntoOEdificio"
@@ -272,7 +275,8 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNumberCodigoPostal" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberCodigoPostal"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextCalle"
@@ -284,7 +288,8 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextConjuntoOEdificio" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextConjuntoOEdificio"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextNumberCodigoPostal"
@@ -297,7 +302,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextColonia" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextColonia"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/editTextNumberNumExterior"
@@ -399,26 +405,12 @@
                 android:id="@+id/buttonSubir"
                 android:layout_width="180dp"
                 android:layout_height="76dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginTop="64dp"
                 android:text="Subir a base de datos"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.852"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageSelect_iv" />
-
-            <EditText
-                android:id="@+id/editTextNumberId"
-                android:layout_width="122dp"
-                android:layout_height="51dp"
-                android:ems="10"
-                android:hint="ID"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/textViewBottom"
-                app:layout_constraintEnd_toStartOf="@+id/buttonSubir"
-                app:layout_constraintHorizontal_bias="0.41"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/buttonSubir"
-                app:layout_constraintVertical_bias="0.163" />
 
             <ImageView
                 android:id="@+id/imageSelect_iv"
@@ -429,6 +421,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNumberMetrosCuadradosConstruccion" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disponible"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewBottom"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSubir"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberMetrosCuadradosConstruccion"
+                app:layout_constraintVertical_bias="0.718" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

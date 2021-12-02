@@ -11,9 +11,10 @@
         <entry key="app/src/main/res/drawable/outline_image_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/outline_king_bed_24.xml" value="0.19907407407407407" />
         <entry key="app/src/main/res/drawable/outline_terrain_24.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.16528008874098724" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.17643710870802504" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2598958333333333" />
-        <entry key="app/src/main/res/layout/item_propiedad.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/item_propiedad.xml" value="0.5308056872037915" />
       </map>
     </option>
   </component>

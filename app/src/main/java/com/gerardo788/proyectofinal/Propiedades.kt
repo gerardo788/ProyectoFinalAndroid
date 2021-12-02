@@ -71,7 +71,8 @@ data class Propiedades (
     //val correoElectronico : String,
     //val nombreAsistente : String,
     //val telefonoAsistente : Int,
-
+    val urlFoto : String,
+    val disponible : String
     )
 {
 

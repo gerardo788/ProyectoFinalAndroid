@@ -1,5 +1,6 @@
 package com.gerardo788.proyectofinal
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,7 +30,9 @@ class DataViewModel : ViewModel() {
                     numeroEstacionamientos = document.get("numeroEstacionamientos") as String,
                     metrosCuadradosConstruccion = document.get("metrosCuadradosConstruccion") as String,
                     metrosCuadradosTerreno = document.get("metrosCuadradosTerreno") as String,
-                    numID = document.get("id") as String))
+                    numID = document.get("id") as String,
+                    urlFoto = document.get("urlFoto") as String,
+                    disponible = document.get("disponible") as String))
             }
         }
     }
